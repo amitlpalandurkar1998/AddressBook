@@ -8,12 +8,14 @@ public class AddressBook {
 
         System.out.println("Welcome to Address Book.");
 
-            System.out.println("Enter '1' to Add a contact.");
+        while (true){
+            System.out.println("Enter '1' to Add a New contact.");
+            System.out.println("Enter '0' To Exit : ");
 
             System.out.print("Enter the input : ");
             int input = scanner.nextInt();
 
-            if (input==1){
+            if (input == 1) {
                 System.out.print("Enter First Name : ");
                 String firstName = scanner.next();
 
@@ -38,9 +40,12 @@ public class AddressBook {
                 System.out.print("Enter email: ");
                 String email = scanner.next();
 
-            }else {
+            } else if (input==0) {
+                break;
+            } else {
                 System.out.println("Invalid....................!");
             }
+        }
 
     }
 }
