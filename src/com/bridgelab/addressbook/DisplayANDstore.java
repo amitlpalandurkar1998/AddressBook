@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Scanner;
 
 class DisplayANDstore {
-
     private final List<Contact> contactsStore;
+    Scanner scanner = new Scanner(System.in);
 
     public DisplayANDstore() {
         contactsStore = new ArrayList<>();
@@ -28,8 +28,7 @@ class DisplayANDstore {
         System.out.println("-----------------------------------------------");
     }
 
-    public void editContact(String editorName){
-        Scanner scanner = new Scanner(System.in);
+    public void editContact(String editorName){//This Method is used to Edit Contact.
         boolean isNotFount = true;
         if (editorName!=null) {
             for (Contact contact : contactsStore) {
@@ -86,7 +85,7 @@ class DisplayANDstore {
         }
     }
 
-    public void deleteContact(String deleteName) {
+    public void deleteContact(String deleteName) {//This Method is used to delete contact.
         boolean isNotFount = true;
         for (Contact contact : contactsStore){
             if (contact.getFIRSTNAME().equals(deleteName)){
@@ -99,5 +98,99 @@ class DisplayANDstore {
         if (isNotFount){
             System.out.println("Contact Not Found............!"+"\n");
         }
+    }
+    void uniqueNameAddressBook(){//This Method is used to create address book With the Unique Name.
+        DisplayANDstore displayANDstore = new DisplayANDstore();
+        boolean exitContactList = true;
+
+        System.out.print("Enter the Name Of Address Book : ");
+        String nameAddressBook = scanner.next();
+
+        System.out.println("\nWelcome to '"+nameAddressBook+"' Address Book."+"\n");
+
+        while (exitContactList){
+            System.out.println("Enter '1' to Add a New contact.");
+            System.out.println("Enter '2' to Display a contact.");
+            System.out.println("Enter '3' to Edit a contact.");
+            System.out.println("Enter '4' to Delete a contact.");
+            System.out.println("Enter '0' To Exit .");
+
+            System.out.print("\nEnter the input : ");
+            int input = scanner.nextInt();
+
+            switch (input) {
+                case 0 :
+                    System.out.println("Exiting..............."+"\n");
+                    exitContactList=false;
+                    break;
+                case 1 :
+                    System.out.print("Enter First Name : ");
+                    String firstName = scanner.next();
+
+                    System.out.print("Enter Last Name : ");
+                    String lastName = scanner.next();
+
+                    System.out.print("Enter address: ");
+                    String address = scanner.next();
+
+                    System.out.print("Enter city: ");
+                    String city = scanner.next();
+
+                    System.out.print("Enter state: ");
+                    String state = scanner.next();
+
+                    System.out.print("Enter ZIP: ");
+                    String zip = scanner.next();
+
+                    System.out.print("Enter phone number: ");
+                    String phoneNumber = scanner.next();
+
+                    System.out.print("Enter email: ");
+                    String email = scanner.next();
+
+                    Contact contact = new Contact(firstName,lastName,address,city,state,zip,phoneNumber,email);
+                    displayANDstore.addContact(contact);
+                    break;
+                case 2 :
+                    displayANDstore.displayContact();
+                    break;
+                case 3 :
+                    System.out.print("Enter the Name of that contact that you want to Edit : ");
+                    String editorName = scanner.next();
+                    displayANDstore.editContact(editorName);
+                    break;
+                case 4 :
+                    System.out.print("Enter the Name of that contact that you want to Delete : ");
+                    String deleteName = scanner.next();
+                    displayANDstore.deleteContact(deleteName);
+                    break;
+                default:
+                    System.out.println("Invalid....................!");
+                    System.out.println("Please Enter The Valid Input."+"\n");
+            }
+        }
+    }
+    void firstPage(){//This Method is used to display First page.
+        while (true){
+            System.out.println("Enter '1' to Create New Address Book.");
+            System.out.println("Enter '0' To Exit .");
+
+            System.out.print("Enter the input : ");
+            int input = scanner.nextInt();
+
+            switch (input){
+                case 0 :
+                    exit();
+                    break;
+                case 1 :
+                    uniqueNameAddressBook();
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+    void exit(){//This Method is used to exit from project.
+        System.out.println("Thank You.........................");
     }
 }
